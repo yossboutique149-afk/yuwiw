@@ -67,6 +67,13 @@ export function Icon({ name, size = 20, className = '' }: { name: keyof typeof P
 
 /* -------------------------------- primitives ------------------------------- */
 
+function artHue(seed?: string | null) {
+  const s = seed || 'yumera';
+  let h = 0;
+  for (let i = 0; i < s.length; i += 1) h = (h * 31 + s.charCodeAt(i)) % 360;
+  return 250 + (h % 90);
+}
+
 export function Avatar({
   src,
   name,
@@ -78,12 +85,26 @@ export function Avatar({
   size?: number;
   ring?: boolean;
 }) {
+  const hue = artHue(name);
   return (
     <span
-      className={`avatar${ring ? ' avatar-ring' : ''}`}
-      style={{ width: size, height: size, fontSize: Math.max(11, size * 0.36) }}
+      className={`avatar${ring ? ' avatar-ring' : ''}${src ? '' : ' avatar-art'}`}
+      style={{
+        width: size,
+        height: size,
+        fontSize: Math.max(11, size * 0.36),
+        ...(src
+          ? {}
+          : {
+              backgroundImage: `radial-gradient(circle at 32% 24%, hsla(${hue}, 64%, 70%, 0.55), transparent 62%), linear-gradient(150deg, hsl(${hue} 46% 27%), #0d0a16 78%)`,
+            }),
+      }}
     >
-      {src ? <img src={mediaUrl(src)} alt={name || 'avatar'} loading="lazy" /> : <span>{initials(name)}</span>}
+      {src ? (
+        <img src={mediaUrl(src)} alt={name || 'avatar'} loading="lazy" />
+      ) : (
+        <span className="avatar-initials">{initials(name)}</span>
+      )}
     </span>
   );
 }
