@@ -70,18 +70,14 @@ export function AuthPage() {
     <div className="auth-page">
       <section className="auth-art">
         <div className="auth-art-inner">
-          <p className="eyebrow">YumEra · Eternal Universe</p>
-          <h1>
-            A social universe for people who love <em>fictional worlds</em>.
-          </h1>
-          <p className="auth-art-copy">
-            Yumesonas, F/O registry, portraits, stories, music and memories. Everything you love, kept in one
-            celestial place.
-          </p>
+          <p className="eyebrow">YUMERA · ETERNAL UNIVERSE</p>
+          <h1>{t('auth.heroTitle')}</h1>
+          <p className="auth-art-copy">{t('auth.heroCopy')}</p>
           <ul className="auth-points">
-            <li>✦ Yumesona Studio &amp; F/O Registry with Anti-Double protection</li>
-            <li>✦ YumEra V4 Portrait Studio, no generative AI</li>
-            <li>✦ Outside notifications with Web Push &amp; PWA</li>
+            <li>✦ Yumesona Studio</li>
+            <li>✦ F/O Registry</li>
+            <li>✦ Character World</li>
+            <li>✦ Yume Memories</li>
           </ul>
         </div>
         <div className="auth-art-figure">
