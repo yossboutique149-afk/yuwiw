@@ -33,7 +33,7 @@ export type PublicUser = {
   created_at: string;
 };
 
-export type AuthedRequest = Request & { user?: PublicUser };
+export type AuthedRequest = Request<Record<string, string>> & { user?: PublicUser };
 
 export function hashPassword(password: string) {
   return bcrypt.hashSync(password, 10);
