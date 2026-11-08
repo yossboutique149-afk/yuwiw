@@ -197,7 +197,9 @@ export function Modal({
 export function Empty({ title, hint, action }: { title?: string; hint?: string; action?: React.ReactNode }) {
   return (
     <div className="empty">
-      <div className="empty-star">✦</div>
+      <div className="empty-art" aria-hidden="true">
+        <CelestialArt variant="galaxy" />
+      </div>
       <p>{title || 'Nothing here yet.'}</p>
       {hint ? <small>{hint}</small> : null}
       {action}
