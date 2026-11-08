@@ -361,6 +361,7 @@ CREATE TABLE IF NOT EXISTS playlist_items (
   id TEXT PRIMARY KEY,
   playlist_id TEXT NOT NULL REFERENCES playlists(id) ON DELETE CASCADE,
   track_id TEXT NOT NULL,
+  song_id TEXT,
   title TEXT NOT NULL,
   artist TEXT DEFAULT '',
   url TEXT,
@@ -368,6 +369,20 @@ CREATE TABLE IF NOT EXISTS playlist_items (
   dedication TEXT DEFAULT '',
   added_by TEXT,
   position INTEGER DEFAULT 0,
+  created_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS rendered_audio (
+  id TEXT PRIMARY KEY,
+  duration INTEGER DEFAULT 0,
+  created_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS story_comments (
+  id TEXT PRIMARY KEY,
+  story_id TEXT NOT NULL REFERENCES stories(id) ON DELETE CASCADE,
+  author_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  content TEXT NOT NULL,
   created_at TEXT NOT NULL
 );
 
