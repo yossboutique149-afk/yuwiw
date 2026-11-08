@@ -9,7 +9,7 @@ const VIS = ['public', 'followers', 'private'];
 
 /* ---------------------------------- stories -------------------------------- */
 
-function storyWithChapters(id: string) {
+function storyWithChapters(id: string): Record<string, unknown> | null {
   const story = db
     .prepare(
       `SELECT s.*, u.username, u.display_name, u.avatar_url FROM stories s JOIN users u ON u.id = s.user_id WHERE s.id = ?`
@@ -429,7 +429,7 @@ router.delete('/diary/:id', requireAuth, (req: AuthedRequest, res) => {
 
 /* -------------------------------- communities ------------------------------ */
 
-function communityDetail(id: string, viewerId?: string) {
+function communityDetail(id: string, viewerId?: string): Record<string, unknown> | null {
   const community = db
     .prepare(
       `SELECT c.*, u.username AS owner_username, u.display_name AS owner_name,
