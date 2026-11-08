@@ -222,9 +222,7 @@ export function AuthPage() {
             </button>
           ))}
         </div>
-        <p className="auth-legal">
-          By joining you agree to keep YumEra a kind place: no harassment, no spam, no non-consensual sharing.
-        </p>
+        <p className="auth-legal">{t('auth.legal')}</p>
         <Link to="/explore" className="link-inline">
           <Icon name="compass" size={14} /> Explore without an account
         </Link>
