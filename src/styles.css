@@ -674,3 +674,14 @@ input[type='color'] { width: 42px; height: 32px; padding: 2px; background: none;
   background-size: cover;
   background-position: center;
 }
+
+/* --------------------------- empty state artwork ------------------------- */
+.empty-art {
+  width: min(150px, 42%);
+  margin: 0 auto 14px;
+}
+.empty-art .celestial-art {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 14px 30px rgba(91, 58, 134, 0.42));
+}
