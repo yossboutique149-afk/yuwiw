@@ -530,8 +530,8 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(() => {
     const saved = localStorage.getItem('yumera.locale');
     if (saved && saved in DICTS) return saved as Locale;
-    const nav = navigator.language.slice(0, 2);
-    if (nav in DICTS) return nav as Locale;
+    // YumEra opens in Spanish by default, like the original release; an explicit
+    // choice made by the visitor is stored and always wins.
     return 'es';
   });
 
