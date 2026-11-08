@@ -298,5 +298,5 @@ router.post('/ai/lore', requireAuth, async (req: AuthedRequest, res) => {
 
 /* --------------------------- notification centre -------------------------- */
 
-export const aiRouterExtras = { chatCompletion, buildSystemPrompt, characterForUser, safeJson, parseJson };
+export const aiRouterExtras = { chatCompletion, buildSystemPrompt, characterForUser, parseJson };
 export default router;
