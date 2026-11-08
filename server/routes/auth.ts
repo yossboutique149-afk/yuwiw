@@ -71,7 +71,7 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  const identifier = str(req.body.email || req.body.username, 160);
+  const identifier = str(req.body.email || req.body.username || req.body.identifier, 160);
   const password = typeof req.body.password === 'string' ? req.body.password : '';
   if (!identifier || !password) return res.status(400).json({ error: 'missing_credentials' });
 
