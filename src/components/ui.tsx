@@ -1,3 +1,4 @@
+import { CelestialArt } from './art';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
