@@ -84,6 +84,9 @@ export function AuthPage() {
             <li>✦ Outside notifications with Web Push &amp; PWA</li>
           </ul>
         </div>
+        <div className="auth-art-figure">
+          <CelestialArt variant="galaxy" title="YumEra celestial artwork" />
+        </div>
         <div className="auth-orbit" aria-hidden="true">
           <span className="orbit orbit-1" />
           <span className="orbit orbit-2" />
