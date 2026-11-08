@@ -624,3 +624,20 @@ input[type='color'] { width: 42px; height: 32px; padding: 2px; background: none;
 @media (prefers-reduced-motion: reduce) {
   .hero-art-wrap .celestial-art { animation: none; }
 }
+
+/* --------------------------- auth page artwork --------------------------- */
+.auth-art-figure {
+  display: grid;
+  place-items: center;
+  margin: 20px auto 4px;
+  width: min(240px, 62%);
+  position: relative;
+  z-index: 1;
+}
+.auth-art-figure .celestial-art {
+  filter: drop-shadow(0 22px 48px rgba(91, 58, 134, 0.45));
+  animation: artFloat 10s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .auth-art-figure .celestial-art { animation: none; }
+}

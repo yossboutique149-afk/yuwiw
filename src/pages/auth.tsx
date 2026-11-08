@@ -1,3 +1,4 @@
+import { CelestialArt } from '../components/art';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { api, ApiError, errorLabel, useAuth, useI18n, useToast } from '../lib/core';
