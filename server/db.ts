@@ -350,6 +350,8 @@ CREATE TABLE IF NOT EXISTS playlists (
   cover_url TEXT,
   description TEXT DEFAULT '',
   is_public INTEGER DEFAULT 1,
+  visibility TEXT DEFAULT 'private',
+  dedication TEXT DEFAULT '',
   collaborative INTEGER DEFAULT 0,
   source TEXT DEFAULT 'manual',
   created_at TEXT NOT NULL
