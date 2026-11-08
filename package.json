@@ -1,23 +1,22 @@
 {
-  "name": "yuwiw",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yossboutique149-afk/yuwiw.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "name": "yumera-eternal-universe",
+  "version": "4.0.0",
+  "private": true,
+  "description": "YUMERA: ETERNAL UNIVERSE — social universe for yumeshipping, selfshipping, F/O, yumesonas and original characters",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/yossboutique149-afk/yuwiw/issues"
+  "engines": {
+    "node": ">=20"
   },
-  "homepage": "https://github.com/yossboutique149-afk/yuwiw#readme",
+  "scripts": {
+    "dev:server": "tsx watch server/index.ts",
+    "dev:client": "vite",
+    "build:client": "vite build",
+    "build:server": "tsc -p tsconfig.server.json",
+    "build": "npm run build:client && npm run build:server",
+    "start": "node dist-server/index.js",
+    "assets": "node scripts/gen-assets.mjs",
+    "test": "node scripts/smoke.mjs"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^11.10.0",
@@ -29,10 +28,10 @@
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.10",
-    "@types/express": "^5.0.6",
+    "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.3.0",
-    "@types/node": "^26.6.6",
+    "@types/node": "^22.10.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.2.1",
@@ -40,7 +39,7 @@
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-router-dom": "^7.18.5",
-    "typescript": "^7.0.2",
+    "typescript": "^5.9.3",
     "vite": "^8.3.6"
   }
 }
