@@ -134,7 +134,7 @@ export function AuthPage() {
                   onChange={(e) => setIdentifier(e.target.value)}
                   autoComplete="username"
                   required
-                  placeholder="you@yumera.app"
+                  placeholder="luna@yumera.app"
                 />
               </Field>
               <Field label={t('auth.password')} required>

@@ -451,7 +451,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Link to="/" className="brand">
           <span className="brand-mark">✦</span>
           <span>
-            <span className="brand-name">YumEra</span>
+            <span className="brand-name">YUMERA</span>
             <span className="brand-sub">Eternal Universe</span>
           </span>
         </Link>

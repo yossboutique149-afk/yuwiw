@@ -92,7 +92,7 @@ export function HomePage() {
           <section className="hero">
             <div className="hero-glow" aria-hidden="true" />
             <div className="hero-copy">
-              <p className="eyebrow">YumEra · Eternal Universe</p>
+              <p className="eyebrow">YUMERA · ETERNAL UNIVERSE</p>
               <h1>
                 Your characters, your love, <em>your universe</em>.
               </h1>
