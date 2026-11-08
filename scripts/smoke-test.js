@@ -143,7 +143,7 @@ async function main() {
 
     const me = await call('/api/auth/me', { cookie: cookieA });
     check('session resolves to the account', me.status === 200 && me.json?.user?.username === `smoke_a_${RUN}`, String(me.json?.user?.username));
-    check('session returns unread counts', typeof me.json?.counts?.notifications === 'number', `notifications=${me.json?.counts?.notifications}`);
+    check('session returns unread counts', typeof me.json?.counts?.unreadNotifications === 'number', `notifications=${me.json?.counts?.unreadNotifications}`);
     const userA = me.json?.user;
     const userB = (await call('/api/auth/me', { cookie: cookieB })).json?.user;
 
