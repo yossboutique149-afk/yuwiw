@@ -593,3 +593,34 @@ input[type='color'] { width: 42px; height: 32px; padding: 2px; background: none;
 .device-row { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--line-soft); padding: 7px 0; }
 .guide { margin: 8px 0 10px; padding-left: 20px; color: var(--muted); font-size: 0.87rem; line-height: 1.8; }
 .guide li::marker { color: var(--gold); }
+
+/* --------------------------- celestial artwork --------------------------- */
+.celestial-art { display: block; width: 100%; height: auto; border-radius: 26px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr); gap: 30px; align-items: center; }
+.hero-copy { min-width: 0; position: relative; z-index: 1; }
+.hero-art-wrap { display: grid; place-items: center; position: relative; z-index: 1; }
+.hero-art-wrap .celestial-art {
+  max-width: 330px;
+  filter: drop-shadow(0 28px 64px rgba(91, 58, 134, 0.5));
+  animation: artFloat 9s ease-in-out infinite;
+}
+@keyframes artFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.section-title::after {
+  content: '';
+  display: block;
+  width: 78px;
+  height: 1px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, var(--gold), rgba(217, 162, 184, 0.5), transparent);
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 18px; }
+  .hero-art-wrap { order: -1; }
+  .hero-art-wrap .celestial-art { max-width: 210px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-art-wrap .celestial-art { animation: none; }
+}
