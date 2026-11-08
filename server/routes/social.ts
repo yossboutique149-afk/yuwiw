@@ -702,7 +702,7 @@ router.get('/search', (req: AuthedRequest, res) => {
   const q = str(req.query.q, 80);
   const type = String(req.query.type || 'all');
   if (q.length < 1) return res.json({ users: [], posts: [], yumesonas: [], stories: [], communities: [], playlists: [], characters: [] });
-  const like = `%${q.replace(/[%_]/g, '')}%`;
+  const like = `%${q}%`;
   const viewer = req.user?.id ?? '';
 
   const users =
