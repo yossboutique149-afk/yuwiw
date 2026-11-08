@@ -1,26 +1,28 @@
 # syntax=docker/dockerfile:1
-# Node 22 (supported LTS) on Debian 13 "trixie": the Debian 12 packages flagged by the
-# image scan (glibc, zlib, acl, attr, gcc-12) have no fix available in bookworm.
-FROM node:22-trixie-slim AS build
+# Node 22 (supported LTS) on Alpine: the Debian base images are blocked by OS
+# advisories with no fix available (glibc, acl, attr, gcc). Alpine ships musl and a
+# much smaller package set, so the native SQLite module is compiled in the build stage.
+FROM node:22-alpine AS build
 WORKDIR /app
 ENV NODE_ENV=development
+# Toolchain for better-sqlite3 (no musl prebuild is published).
+RUN apk add --no-cache python3 make g++
 COPY package*.json ./
 RUN npm ci
 COPY . .
-RUN npm run build
+RUN npm run build \
+  && npm prune --omit=dev
 
-FROM node:22-trixie-slim AS runtime
+FROM node:22-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
-RUN apt-get update \
-  && apt-get upgrade -y --no-install-recommends \
-  && rm -rf /var/lib/apt/lists/*
-COPY package*.json ./
-RUN npm ci --omit=dev && npm cache clean --force
+RUN apk upgrade --no-cache
+COPY --from=build /app/package*.json ./
+COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/dist-server ./dist-server
-COPY shared ./shared
+COPY --from=build /app/shared ./shared
 RUN mkdir -p /app/data/uploads /app/data/audio && chown -R node:node /app
 USER node
 EXPOSE 3000
