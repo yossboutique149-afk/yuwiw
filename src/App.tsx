@@ -17,9 +17,9 @@ import {
   StoryPage,
 } from './pages/creations';
 import { CharacterChatPage, CharacterWorldPage } from './pages/characters';
-import { PortraitEditorPage, PortraitHomePage } from './pages/portrait';
-import { MusicPage } from './pages/music';
-import { VideoPage } from './pages/video';
+import { PortraitHomePage, PortraitStudioPage } from './pages/portrait';
+import { MusicStudioPage } from './pages/music';
+import { VideoHomePage, VideoStudioPage } from './pages/video';
 import { GamePlayerPage, GamesPage } from './pages/games';
 import { NotificationCenterPage, SettingsPage } from './pages/notifications';
 
@@ -85,9 +85,10 @@ export default function App() {
         <Route path="/characters/:id" element={<Guard><CharacterChatPage /></Guard>} />
 
         <Route path="/portrait" element={<PortraitHomePage />} />
-        <Route path="/portrait/:id" element={<Guard><PortraitEditorPage /></Guard>} />
-        <Route path="/music" element={<MusicPage />} />
-        <Route path="/video" element={<VideoPage />} />
+        <Route path="/portrait/:id" element={<Guard><PortraitStudioPage /></Guard>} />
+        <Route path="/music" element={<MusicStudioPage />} />
+        <Route path="/video" element={<VideoHomePage />} />
+        <Route path="/video/:id" element={<Guard><VideoStudioPage /></Guard>} />
         <Route path="/games" element={<GamesPage />} />
         <Route path="/games/:id" element={<GamePlayerPage />} />
 
