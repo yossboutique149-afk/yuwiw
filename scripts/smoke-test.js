@@ -193,7 +193,13 @@ async function main() {
       check('mark a notification as read', read.status < 400, `status ${read.status}`);
     }
     const settings = await call('/api/notification-settings', { cookie: cookieA });
-    check('notification settings are readable', settings.status === 200 && Array.isArray(settings.json?.preferences), `status ${settings.status}`);
+    check(
+      'notification settings are readable',
+      settings.status === 200 &&
+        typeof settings.json?.preferences === 'object' &&
+        Object.keys(settings.json?.preferences || {}).length > 0,
+      `${Object.keys(settings.json?.preferences || {}).length} categories`
+    );
     const pushKey = await call('/api/push/public-key');
     check('VAPID public key is exposed', pushKey.status === 200 && typeof pushKey.json?.publicKey === 'string' && pushKey.json.publicKey.length > 20, 'key present');
 
