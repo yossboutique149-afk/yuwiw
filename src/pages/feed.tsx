@@ -91,27 +91,32 @@ export function HomePage() {
         {!user ? (
           <section className="hero">
             <div className="hero-glow" aria-hidden="true" />
-            <p className="eyebrow">YumEra · Eternal Universe</p>
-            <h1>
-              Your characters, your love, <em>your universe</em>.
-            </h1>
-            <p>
-              A social home for yumeshipping, selfshipping, F/O and original worlds. Build yumesonas, keep your
-              registry, create portraits and share your stories.
-            </p>
-            <div className="hero-actions">
-              <Link to="/auth" className="btn btn-primary btn-lg">
-                {t('nav.register')}
-              </Link>
-              <Link to="/explore" className="btn btn-outline btn-lg">
-                {t('nav.explore')}
-              </Link>
+            <div className="hero-copy">
+              <p className="eyebrow">YumEra · Eternal Universe</p>
+              <h1>
+                Your characters, your love, <em>your universe</em>.
+              </h1>
+              <p>
+                A social home for yumeshipping, selfshipping, F/O and original worlds. Build yumesonas, keep your
+                registry, create portraits and share your stories.
+              </p>
+              <div className="hero-actions">
+                <Link to="/auth" className="btn btn-primary btn-lg">
+                  {t('nav.register')}
+                </Link>
+                <Link to="/explore" className="btn btn-outline btn-lg">
+                  {t('nav.explore')}
+                </Link>
+              </div>
+              <div className="hero-stats">
+                <span>✦ Yumesona Studio</span>
+                <span>✦ F/O Registry</span>
+                <span>✦ Portrait Studio V4</span>
+                <span>✦ Web Push</span>
+              </div>
             </div>
-            <div className="hero-stats">
-              <span>✦ Yumesona Studio</span>
-              <span>✦ F/O Registry</span>
-              <span>✦ Portrait Studio V4</span>
-              <span>✦ Web Push</span>
+            <div className="hero-art-wrap">
+              <CelestialArt variant="moon" title="YumEra celestial moon artwork" />
             </div>
           </section>
         ) : (
