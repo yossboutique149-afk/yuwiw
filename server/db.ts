@@ -488,6 +488,31 @@ export const NOTIFICATION_CATEGORIES = [
 
 export type NotificationCategory = (typeof NOTIFICATION_CATEGORIES)[number];
 
+/** Adds columns introduced after the first release so existing databases keep working. */
+function ensureColumns(table: string, columns: Record<string, string>): string[] {
+  const existing = new Set(
+    (db.prepare(`PRAGMA table_info(${table})`).all() as { name: string }[]).map((row) => row.name)
+  );
+  const added: string[] = [];
+  for (const [name, ddl] of Object.entries(columns)) {
+    if (existing.has(name)) continue;
+    db.exec(`ALTER TABLE ${table} ADD COLUMN ${name} ${ddl}`);
+    added.push(name);
+  }
+  return added;
+}
+
+const playlistColumnsAdded = ensureColumns('playlists', {
+  visibility: "TEXT DEFAULT 'private'",
+  dedication: "TEXT DEFAULT ''",
+});
+if (playlistColumnsAdded.includes('visibility')) {
+  db.exec("UPDATE playlists SET visibility = CASE WHEN is_public = 1 THEN 'public' ELSE 'private' END");
+}
+if (ensureColumns('playlist_items', { song_id: 'TEXT' }).includes('song_id')) {
+  db.exec('UPDATE playlist_items SET song_id = track_id WHERE song_id IS NULL');
+}
+
 /** Creates the official YumEra account and platform content (no fake user activity). */
 export function seed() {
   const existing = db.prepare('SELECT id FROM users WHERE username = ?').get('yumera') as { id: string } | undefined;
