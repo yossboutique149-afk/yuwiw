@@ -10,6 +10,7 @@ import {
   useI18n,
   useToast,
 } from '../lib/core';
+import { CelestialArt } from '../components/art';
 import {
   Avatar,
   Btn,
