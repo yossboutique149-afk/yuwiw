@@ -169,12 +169,14 @@ router.post('/playlists/:id/items', requireAuth, (req: AuthedRequest, res) => {
   if (!title) return res.status(400).json({ error: 'title_required' });
   const count = (db.prepare('SELECT count(*) c FROM playlist_items WHERE playlist_id = ?').get(req.params.id) as { c: number }).c;
   const id = uid();
+  const songId = str(req.body.song_id, 80) || null;
   db.prepare(
-    'INSERT INTO playlist_items (id, playlist_id, song_id, title, artist, source, url, position, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    'INSERT INTO playlist_items (id, playlist_id, song_id, track_id, title, artist, source, url, position, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
   ).run(
     id,
     req.params.id,
-    str(req.body.song_id, 80) || null,
+    songId,
+    songId,
     title,
     str(req.body.artist, 200),
     ['yumera', 'spotify', 'external'].includes(req.body.source) ? req.body.source : 'yumera',
