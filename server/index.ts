@@ -3,7 +3,8 @@ import fs from 'node:fs';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import { db, seed, UPLOAD_DIR, AUDIO_DIR, NOTIFICATION_CATEGORIES } from './db';
-import { attachUser } from './auth';
+import { attachUser, requireAuth, type AuthedRequest } from './auth';
+import { upload, uploadedUrls } from './util';
 import { getVapid } from './notify';
 import { aiConfig } from './routes/ai';
 import authRoutes from './routes/auth';
@@ -50,6 +51,12 @@ app.get('/api/health', (_req, res) => {
     notifications: { categories: NOTIFICATION_CATEGORIES, push: Boolean(getVapid().publicKey) },
     ai: { configured: aiConfig().configured },
   });
+});
+
+app.post('/api/upload', requireAuth, upload.array('files', 12), (req: AuthedRequest, res) => {
+  const files = uploadedUrls(req.files as Express.Multer.File[] | undefined);
+  if (!files.length) return res.status(400).json({ error: 'no_files' });
+  res.json({ files: files.map((url) => ({ url })), urls: files });
 });
 
 app.use('/api/auth', authRoutes);
