@@ -259,8 +259,8 @@ router.post('/playlists/ai', requireAuth, async (req: AuthedRequest, res) => {
     chosen.forEach((songId, index) => {
       const song = songs.find((s) => s.id === songId)!;
       db.prepare(
-        'INSERT INTO playlist_items (id, playlist_id, song_id, title, artist, source, url, position, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
-      ).run(uid(), id, song.id, song.title, song.artist, 'yumera', `/api/music/songs/${song.id}/stream`, index, now());
+        'INSERT INTO playlist_items (id, playlist_id, song_id, track_id, title, artist, source, url, position, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+      ).run(uid(), id, song.id, song.id, song.title, song.artist, 'yumera', `/api/music/songs/${song.id}/stream`, index, now());
     });
     res.status(201).json({ playlist: playlistDetail(id, req.user!.id), provider: 'ai' });
   } catch (error) {
